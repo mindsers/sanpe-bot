@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"tmi.js": "^1.7.5"
+	}
+}
