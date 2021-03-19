@@ -1,5 +1,16 @@
 {
+	"name": "sanpe-bot",
+	"version": "1.0.0",
+	"description": "The SanPé bot is a Twitch bot built live on https://twitch.tv/mindsers",
+	"main": "src/main.js",
+	"type": "module",
+	"scripts": {
+	  "test": "echo \"no tests\"",
+	  "start": "node src/main.js"
+	},
+	"author": "Nathanaël Cherrier",
+	"license": "MIT",
 	"dependencies": {
-		"tmi.js": "^1.7.5"
+	  "tmi.js": "^1.7.5"
 	}
-}
+  }
