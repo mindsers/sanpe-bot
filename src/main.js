@@ -24,7 +24,7 @@ client.on('message', async (target, context, msg, self) => {
     const [commandName] = msg.trim().split(' ')
 
     try {
-        const { resolver } = await import(`./src/commands/${commandName.replace('!', '')}.js`)
+        const { resolver } = await import(`./commands/${commandName.replace('!', '')}.js`)
         if (resolver != null) {
             resolver({ client, target, context, msg, self })
             return 
