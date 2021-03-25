@@ -1,0 +1,1 @@
+export { resolver } from './shoutout.js'
