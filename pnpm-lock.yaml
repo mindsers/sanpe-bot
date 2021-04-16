@@ -5,7 +5,7 @@ specifiers:
   tmi.js: ^1.7.5
 
 dependencies:
-  tmi.js: 1.7.5
+  tmi.js: 1.8.2
 
 devDependencies:
   nodemon: 2.0.7
@@ -51,16 +51,16 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /anymatch/3.1.1:
-    resolution: {integrity: sha512-mM8522psRCqzV+6LhomX5wgp25YVibjh8Wj23I5RPkPppSVSjyKD2A2mBJmWGa+KN7f2D6LNh9jkBCeyLktzjg==}
+  /anymatch/3.1.2:
+    resolution: {integrity: sha512-P43ePfOAIupkguHUycrc4qJ9kz8ZiuOUijaETwX7THt0Y/GNK7v0aa8rY816xWjZ7rJdA5XdMcpVFTKMq+RvWg==}
     engines: {node: '>= 8'}
     dependencies:
       normalize-path: 3.0.0
-      picomatch: 2.2.2
+      picomatch: 2.2.3
     dev: true
 
-  /balanced-match/1.0.0:
-    resolution: {integrity: sha1-ibTRmasr7kneFk6gK4nORi1xt2c=}
+  /balanced-match/1.0.2:
+    resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
 
   /binary-extensions/2.2.0:
@@ -85,7 +85,7 @@ packages:
   /brace-expansion/1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
     dependencies:
-      balanced-match: 1.0.0
+      balanced-match: 1.0.2
       concat-map: 0.0.1
     dev: true
 
@@ -126,7 +126,7 @@ packages:
     resolution: {integrity: sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==}
     engines: {node: '>= 8.10.0'}
     dependencies:
-      anymatch: 3.1.1
+      anymatch: 3.1.2
       braces: 3.0.2
       glob-parent: 5.1.2
       is-binary-path: 2.1.0
@@ -536,8 +536,8 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /picomatch/2.2.2:
-    resolution: {integrity: sha512-q0M/9eZHzmr0AulXyPwNfZjtwZ/RBZlbN3K3CErVrk50T2ASYI7Bye0EvekFY3IP1Nt2DHu0re+V2ZHIpMkuWg==}
+  /picomatch/2.2.3:
+    resolution: {integrity: sha512-KpELjfwcCDUb9PeigTs2mBJzXUPzAuP2oPcA989He8Rte0+YUAjw1JVedDhuTKPkHjSYzMN3npC9luThGYEKdg==}
     engines: {node: '>=8.6'}
     dev: true
 
@@ -578,7 +578,7 @@ packages:
     resolution: {integrity: sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==}
     engines: {node: '>=8.10.0'}
     dependencies:
-      picomatch: 2.2.2
+      picomatch: 2.2.3
     dev: true
 
   /registry-auth-token/4.2.1:
@@ -678,12 +678,12 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /tmi.js/1.7.5:
-    resolution: {integrity: sha512-j3kAnJ8KkWbvwhKhQchleyzZEuPa/5rWdeV7MNBEYEAqGhbZuXR+FfI1QgKphYqUrJ4qFAB3WjHG2YlhGq3PDg==}
+  /tmi.js/1.8.2:
+    resolution: {integrity: sha512-af1wcF7AQmEB0laylCHswTw/QD9Q51MLZhCNA/V0shn0CyxsBXWPtiSOHdgkGI88ix7moDsr4Mbl6NeVg8rf5Q==}
     engines: {node: '>=10.0.0'}
     dependencies:
       node-fetch: 2.6.1
-      ws: 7.4.3
+      ws: 7.4.4
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -778,8 +778,8 @@ packages:
       typedarray-to-buffer: 3.1.5
     dev: true
 
-  /ws/7.4.3:
-    resolution: {integrity: sha512-hr6vCR76GsossIRsr8OLR9acVVm1jyfEWvhbNjtgPOrfvAlKzvyeg/P6r8RuDjRyrcQoPQT7K0DGEPc7Ae6jzA==}
+  /ws/7.4.4:
+    resolution: {integrity: sha512-Qm8k8ojNQIMx7S+Zp8u/uHOx7Qazv3Yv4q68MiWWWOJhiwG5W3x7iqmRtJo8xxrciZUY4vRxUTJCKuRnF28ZZw==}
     engines: {node: '>=8.3.0'}
     peerDependencies:
       bufferutil: ^4.0.1
