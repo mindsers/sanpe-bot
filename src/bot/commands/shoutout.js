@@ -1,4 +1,4 @@
-export function resolver({ command: { args, memory }, isModerator, isBroadcaster }) {
+function resolver({ command: { args, memory }, isModerator, isBroadcaster }) {
   const [username] = args
 
   if (username != null) {
@@ -15,3 +15,5 @@ export function resolver({ command: { args, memory }, isModerator, isBroadcaster
 
   return `Follow @${memory.shoutout} over at twitch.tv/${memory.shoutout} ! <3 Kreygasm`
 }
+
+export default command('shoutout', resolver, ['so'])
