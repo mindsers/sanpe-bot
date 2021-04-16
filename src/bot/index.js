@@ -20,10 +20,7 @@ bot.messagePipe(
   parseChannel(),
   parseUser(),
   registerCommands(
-    command(
-      'discord',
-      () => `​Join the discord server! https://discord.gg/WrHUfSC`,
-    ),
+    command('discord', () => `​Join the discord server! https://discord.gg/WrHUfSC`),
     command(
       'ebaubir',
       () =>
@@ -31,8 +28,7 @@ bot.messagePipe(
     ),
     command(
       'lurk',
-      ({ displayName }) =>
-        `Hey! Thanks for lurking the stream ${displayName}! Poooound Poooound Poooound`,
+      ({ displayName }) => `Hey! Thanks for lurking the stream ${displayName}! Poooound Poooound Poooound`,
     ),
     command(
       'projet',
@@ -41,17 +37,10 @@ bot.messagePipe(
 
       ['project'],
     ),
-    command(
-      'uses',
-      () =>
-        `I listed my complete setup on this "uses" page: https://mindsers.blog/fr/uses/`,
-    ),
-    command(
-      'socials',
-      () =>
-        `​You can find my socials on my personal website: https://nathanaelcherrier.dev/`,
-      ['social'],
-    ),
+    command('uses', () => `I listed my complete setup on this "uses" page: https://mindsers.blog/fr/uses/`),
+    command('socials', () => `​You can find my socials on my personal website: https://nathanaelcherrier.dev/`, [
+      'social',
+    ]),
     command(
       'patreon',
       ({ displayName }) =>

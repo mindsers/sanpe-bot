@@ -1,8 +1,4 @@
-export function resolver({
-  command: { args, memory },
-  isModerator,
-  isBroadcaster,
-}) {
+export function resolver({ command: { args, memory }, isModerator, isBroadcaster }) {
   const [username] = args
 
   if (username != null) {

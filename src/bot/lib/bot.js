@@ -18,10 +18,7 @@ export class Bot {
 
       let messageContext = {}
       for (const modifier of modifiers) {
-        messageContext = await modifier(
-          { channel, tags, text, self },
-          messageContext,
-        )
+        messageContext = await modifier({ channel, tags, text, self }, messageContext)
       }
 
       console.debug(messageContext)

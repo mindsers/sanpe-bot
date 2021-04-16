@@ -5,7 +5,6 @@ export function parseUser() {
     displayName: incomingMessage.tags['display-name'],
     isModerator: incomingMessage.tags['mod'],
     isSubscriber: incomingMessage.tags['subscriber'],
-    isBroadcaster:
-      messageContext.broadcaster === incomingMessage.tags['username'],
+    isBroadcaster: messageContext.broadcaster === incomingMessage.tags['username'],
   })
 }

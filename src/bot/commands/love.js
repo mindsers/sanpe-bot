@@ -1,8 +1,4 @@
-export function resolver({
-  username: currentUser,
-  command: { args, name },
-  isSubscriber,
-}) {
+export function resolver({ username: currentUser, command: { args, name }, isSubscriber }) {
   const [mention] = args
 
   if (mention == null) {
