@@ -2,24 +2,14 @@ const commandMemory = {}
 
 export function registerCommands(...commandsAndAliases) {
   const commands = new Map()
-  for (const { name, aliases = [], resolver = () => {} } of commandsAndAliases) {
-    if (commands.has(name)) {
-      throw new Error(`Bad command declaration. There is already a resolver for !${name}`)
-    }
-
-    commands.set(name, resolver)
-
+  for (const { aliases = [], resolver = () => {} } of commandsAndAliases) {
     if (aliases == null || !Array.isArray(aliases)) {
-      continue // no aliases
+      throw new Error(`Command must have a name`) // If no aliases, there is no name
     }
 
     for (const alias of aliases) {
-      if (alias === name) {
-        continue // useless
-      }
-
       if (commands.has(alias)) {
-        throw new Error(`Bad alias declaration. There is already a resolver for !${alias}`)
+        throw new Error(`Alias or command "${alias}" already declared.`)
       }
 
       commands.set(alias, resolver)
