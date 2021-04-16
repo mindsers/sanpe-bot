@@ -1,6 +1,7 @@
-export function command(name, resolver = () => {}) {
-    return {
-        name,
-        resolver
-    }
+export function command(name, resolver = () => {}, aliases = []) {
+  return {
+    aliases,
+    name,
+    resolver,
+  }
 }
