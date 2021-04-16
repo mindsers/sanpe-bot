@@ -1,7 +1,7 @@
 export function command(name, resolver = () => {}, aliases = []) {
+  aliases.push(name)
   return {
-    aliases,
-    name,
+    aliases: [...new Set(aliases)],
     resolver,
   }
 }
