@@ -26,22 +26,21 @@ export function registerCommands(...commandsAndAliases) {
         }
 
         const args = incomingMessage.text.trim().slice(1).split(' ');
-	    const commandName = args.shift().toLowerCase();
-        const commandContext = {
-            ...messageContext,
-            command: {
-                name: commandName.replace('!', ''),
-                args,
-                message: args.join(' '),
-                memory: commandMemory,
-            }
-        }
+        const commandName = args.shift().toLowerCase();
 
         for (const command of commands) {
-            if (command.name === commandContext.command.name) {
+            if (command.name === commandName) {
                 return {
                     ...messageContext,
-                    message: command.resolver(commandContext)
+                    message: command.resolver({
+		        ...messageContext,
+		        command: {
+			    name: commandName,
+			    args,
+			    message: args.join(' '),
+			    memory: commandMemory,
+		        }
+		    })
                 }
             }
         }
