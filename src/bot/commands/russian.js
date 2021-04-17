@@ -3,7 +3,7 @@ const youths = ['padawan', 'noob', 'jedi', 'trekkie', 'elf']
 const banTime = 1000
 const banReason = 'russian roulette game'
 
-export async function resolver({
+async function resolver({
   channel,
   command: { bot },
   isBroadcaster,
@@ -30,3 +30,5 @@ export async function resolver({
     return `In my great kindness, I let the young ${youth} ${currentUser} survive !!!`
   }
 }
+
+export default command('roulette', resolver, ['vladimir'])

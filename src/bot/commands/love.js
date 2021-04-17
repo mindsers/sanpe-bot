@@ -1,4 +1,6 @@
-export function resolver({ username: currentUser, command: { args, name }, isSubscriber }) {
+import { command } from '../lib/utils/command.js'
+
+function resolver({ username: currentUser, command: { args, name }, isSubscriber }) {
   const [mention] = args
 
   if (mention == null) {
@@ -22,3 +24,5 @@ export function resolver({ username: currentUser, command: { args, name }, isSub
 
   return `There's ${rate}% <3 between @${currentUser} and @${username}!`
 }
+
+export default command('love', resolver, ['amour'])
