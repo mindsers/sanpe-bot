@@ -6,6 +6,7 @@ import { command } from './lib/utils/command.js'
 
 import { resolver as loveResolver } from './commands/love.js'
 import { resolver as shoutoutResolver } from './commands/shoutout.js'
+import { resolver as russianResolver } from './commands/russian.js'
 import { sayHello } from './say-hello.js'
 
 export const bot = new Bot({
@@ -54,6 +55,7 @@ bot.messagePipe(
     ),
     command('love', loveResolver, ['amour']),
     command('shoutout', shoutoutResolver, ['so']),
+    command('roulette', russianResolver, ['vladimir']),
   ),
   sayHello(),
 )
