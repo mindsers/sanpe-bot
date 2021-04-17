@@ -1,3 +1,5 @@
+import { command } from '../lib/utils/command.js'
+
 const youths = ['padawan', 'noob', 'jedi', 'trekkie', 'elf']
 
 const banTime = 1000

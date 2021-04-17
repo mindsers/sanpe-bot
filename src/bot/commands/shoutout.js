@@ -1,3 +1,5 @@
+import { command } from '../lib/utils/command.js'
+
 function resolver({ command: { args, memory }, isModerator, isBroadcaster }) {
   const [username] = args
 
