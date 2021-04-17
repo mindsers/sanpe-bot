@@ -18,7 +18,7 @@ export class Bot {
 
       let messageContext = {}
       for (const modifier of modifiers) {
-        messageContext = await modifier({ channel, tags, text, self }, messageContext)
+        messageContext = await modifier({ channel, tags, text, self, bot: this }, messageContext)
       }
 
       console.debug(messageContext)
@@ -33,6 +33,18 @@ export class Bot {
     for (const channel of channels) {
       this.#client.say(channel, message)
     }
+  }
+
+  async timeout(channel, username, reason, duration = 300) {
+    await this.#client.timeout(channel, username, duration, reason)
+  }
+
+  async ban(channel, username, reason) {
+    await this.#client.ban(channel, username, reason)
+  }
+
+  async unBan(channel, username) {
+    await this.#client.unban(channel, username)
   }
 
   connect() {
