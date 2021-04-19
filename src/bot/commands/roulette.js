@@ -7,7 +7,7 @@ let barrel = new Barrel(barrelSize)
 class Barrel {
   constructor(size = 6) {
     this.size = size
-    this.slot = new Array(size).fill(false)
+    this.slot = new Array(this.size).fill(false)
     this.slot[Math.floor(Math.random() * this.size)] = true
   }
 
