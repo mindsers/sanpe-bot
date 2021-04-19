@@ -16,7 +16,7 @@ export function registerCommands(...commandsAndAliases) {
     }
   }
 
-  return (incomingMessage, messageContext) => {
+  return async (incomingMessage, messageContext) => {
     if (!incomingMessage.text.startsWith('!')) {
       return { ...messageContext } // Ignore if not a command
     }
@@ -31,17 +31,26 @@ export function registerCommands(...commandsAndAliases) {
       }
     }
 
-    return {
-      ...messageContext,
-      message: commands.get(commandName)({
+    try {
+      return {
         ...messageContext,
-        command: {
-          name: commandName,
-          args,
-          message: args.join(' '),
-          memory: commandMemory,
-        },
-      }),
+        message: await commands.get(commandName)({
+          ...messageContext,
+          command: {
+            name: commandName,
+            args,
+            message: args.join(' '),
+            memory: commandMemory,
+            bot: incomingMessage.bot, // Forward bot reference
+          },
+        }),
+      }
+    } catch (err) {
+      console.error(`Something went wrong processing command ${commandName}`, err)
+      return {
+        ...messageContext,
+        message: 'The commander should check my healph', // This typo is intensional. This is the sanpe-bot. sanpe looks like french for health
+      }
     }
   }
 }

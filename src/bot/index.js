@@ -6,14 +6,15 @@ import { command } from './lib/utils/command.js'
 
 import { sayHello } from './say-hello.js'
 
+import ebaubir from './commands/ebaubir.js'
 import love from './commands/love.js'
-import shoutout from './commands/shoutout.js'
-import project from './commands/project.js'
+import lurk from './commands/lurk.js'
 import maeva from './commands/maeva.js'
 import patreon from './commands/patreon.js'
+import project from './commands/project.js'
+import russian from './commands/russian.js'
+import shoutout from './commands/shoutout.js'
 import socials from './commands/socials.js'
-import ebaubir from './commands/ebaubir.js'
-import lurk from './commands/lurk.js'
 
 export const bot = new Bot({
   identity: {
@@ -37,6 +38,7 @@ bot.messagePipe(
     love,
     shoutout,
     project,
+    russian,
   ),
   sayHello(),
 )
