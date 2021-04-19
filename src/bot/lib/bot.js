@@ -24,27 +24,33 @@ export class Bot {
       console.debug(messageContext)
 
       if (messageContext.message != null) {
-        this.sendMessage(messageContext.message, [channel])
+        this.sendMessage(messageContext.message, { channels =[channel] })
       }
     })
   }
 
-  sendMessage(message, channels = this.#channels) {
+  sendMessage(message, { channels = this.#channels }) {
     for (const channel of channels) {
       this.#client.say(channel, message)
     }
   }
 
-  async timeout(channel, username, reason, duration = 300) {
-    await this.#client.timeout(channel, username, duration, reason)
+  async timeout(username, { channels = this.#channels, duration = 300, reason = 'Because I can' }) {
+    for (const channel of channels) {
+      await this.#client.timeout(channel, username, duration, reason)
+    }
   }
 
-  async ban(channel, username, reason) {
-    await this.#client.ban(channel, username, reason)
+  async ban(username, reason, { channels = this.#channels }) {
+    for (const channel of channels) {
+      await this.#client.ban(channel, username, reason)
+    }
   }
 
-  async unBan(channel, username) {
-    await this.#client.unban(channel, username)
+  async unBan(username, { channels = this.#channels }) {
+    for (const channel of channels) {
+      await this.#client.unban(channel, username)
+    }
   }
 
   connect() {
