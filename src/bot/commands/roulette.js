@@ -8,7 +8,7 @@ class Barrel {
   constructor(size = 6) {
     this.size = size
     this.slot = new Array(size).fill(false)
-    this.slot[Math.random() * this.size] = true
+    this.slot[Math.floor(Math.random() * this.size)] = true
   }
 
   shuffle() {
