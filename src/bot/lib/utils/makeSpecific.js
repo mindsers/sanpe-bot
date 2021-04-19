@@ -4,6 +4,6 @@ export async function makeSpecific(channel, modifier) {
       return messageContext
     }
 
-    return await modifier(...args)(incommingMessage, messageContext)
+    return modifier(...args)(incommingMessage, messageContext)
   }
 }

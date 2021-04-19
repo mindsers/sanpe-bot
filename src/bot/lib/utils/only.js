@@ -4,6 +4,6 @@ export async function only(channel, modifier) {
       return messageContext
     }
 
-    return await modifier(incommingMessage, messageContext)
+    return modifier(incommingMessage, messageContext)
   }
 }
