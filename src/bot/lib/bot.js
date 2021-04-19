@@ -16,9 +16,15 @@ export class Bot {
         return // Ignore messages from the bot
       }
 
-      let messageContext = {}
+      let messageContext = {
+        actions: {
+          ban: (...args) => this.ban(...args, { channels: [channel] }),
+          unban: (...args) => this.unban(...args, { channels: [channel] }),
+          timeout: (username, duration, reason) => this.timeout(username, { channels: [channel], duration, reason }),
+        },
+      }
       for (const modifier of modifiers) {
-        messageContext = await modifier({ channel, tags, text, self, bot: this }, messageContext)
+        messageContext = await modifier({ channel, tags, text, self }, messageContext)
       }
 
       console.debug(messageContext)
@@ -47,7 +53,7 @@ export class Bot {
     }
   }
 
-  async unBan(username, { channels = this.#channels } = {}) {
+  async unban(username, { channels = this.#channels } = {}) {
     for (const channel of channels) {
       await this.#client.unban(channel, username)
     }
