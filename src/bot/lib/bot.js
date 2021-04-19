@@ -12,26 +12,47 @@ export class Bot {
   messagePipe(...modifiers) {
     this.#client.on('message', async (channel, tags, text, self, ...rest) => {
       console.debug({ channel, tags, text, self, rest })
+
       if (self) {
         return // Ignore messages from the bot
       }
 
       let messageContext = {
-        actions: {
-          ban: (...args) => this.ban(...args, { channels: [channel] }),
-          unban: (...args) => this.unban(...args, { channels: [channel] }),
-          timeout: (username, duration, reason) => this.timeout(username, { channels: [channel], duration, reason }),
-        },
+        timeoutDuration: 300,
+        banReason: `Because I can`,
       }
+
       for (const modifier of modifiers) {
         messageContext = await modifier({ channel, tags, text, self }, messageContext)
+
+        if (messageContext.message != null) {
+          this.sendMessage(messageContext.message, { channels: [channel] })
+          messageContext.message = null
+        }
+
+        if (messageContext.unban != null) {
+          await this.unban(messageContext.unban, { channels: [channel] })
+          messageContext.unban = null
+        }
+
+        if (messageContext.ban != null) {
+          await this.ban(messageContext.ban, messageContext.banReason, { channels: [channel] })
+
+          break
+        }
+
+        if (messageContext.timeout != null) {
+          await this.timeout(messageContext.timeout, {
+            reason: messageContext.reason,
+            duration: messageContext.timeoutDuration,
+            channels: [channel],
+          })
+
+          break
+        }
       }
 
       console.debug(messageContext)
-
-      if (messageContext.message != null) {
-        this.sendMessage(messageContext.message, { channels: [channel] })
-      }
     })
   }
 
