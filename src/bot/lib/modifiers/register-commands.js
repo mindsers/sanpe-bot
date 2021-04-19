@@ -32,19 +32,18 @@ export function registerCommands(...commandsAndAliases) {
     }
 
     try {
-      const result = await commands.get(commandName)({
-        ...messageContext,
-        command: {
-          name: commandName,
-          args,
-          message: args.join(' '),
-          memory: commandMemory,
-          bot: incomingMessage.bot, // Forward bot reference
-        },
-      })
       return {
         ...messageContext,
-        message: result,
+        message: await commands.get(commandName)({
+          ...messageContext,
+          command: {
+            name: commandName,
+            args,
+            message: args.join(' '),
+            memory: commandMemory,
+            bot: incomingMessage.bot, // Forward bot reference
+          },
+        }),
       }
     } catch (err) {
       console.error(`Something went wrong processing command ${commandName}`, err)
