@@ -3,6 +3,7 @@ import { registerCommands } from './lib/modifiers/register-commands.js'
 import { parseUser } from './lib/modifiers/parse-user.js'
 import { parseChannel } from './lib/modifiers/parse-channel.js'
 import { command } from './lib/utils/command.js'
+import { only } from './lib/utils/only.js'
 
 import { sayHello } from './say-hello.js'
 
@@ -27,18 +28,21 @@ export const bot = new Bot({
 bot.messagePipe(
   parseChannel(),
   parseUser(),
-  registerCommands(
-    command('discord', () => `​Join the discord server! https://discord.gg/WrHUfSC`),
-    command('uses', () => `I listed my complete setup on this "uses" page: https://mindsers.blog/fr/uses/`),
-    ebaubir,
-    lurk,
-    socials,
-    patreon,
-    maeva,
-    love,
-    shoutout,
-    project,
-    russian,
+  only(
+    'mindsers',
+    registerCommands(
+      command('discord', () => `​Join the discord server! https://discord.gg/WrHUfSC`),
+      command('uses', () => `I listed my complete setup on this "uses" page: https://mindsers.blog/fr/uses/`),
+      ebaubir,
+      lurk,
+      socials,
+      patreon,
+      maeva,
+      love,
+      shoutout,
+      project,
+      russian,
+    ),
   ),
   sayHello(),
 )

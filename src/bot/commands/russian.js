@@ -14,7 +14,7 @@ async function resolver({
 
   // As a russian roulette work, there is a chance on 6 to be killed
   // This chance is reduced on 3 if user is not a subscriber
-  const shouldKill = Math.random() < 1 / isSubscriber ? 6 : 3
+  const shouldKill = Math.random() < 1 / (isSubscriber ? 6 : 3)
 
   if (shouldKill) {
     await bot.timeout(currentUser, { channels: [channel], duration: 1, reason: 'russian roulette game' })
