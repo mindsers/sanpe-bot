@@ -11,7 +11,7 @@ async function resolver({ isBroadcaster, isModerator, isSubscriber, username: cu
 
   if (shouldKill) {
     return {
-      messqge: `You loose ${currentUser}!!! I'll kill you !!!`,
+      message: `You loose ${currentUser}!!! I'll kill you !!!`,
       timeout: currentUser,
     }
   } else {
