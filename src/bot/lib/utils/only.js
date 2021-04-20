@@ -1,4 +1,4 @@
-export async function only(channel, modifier) {
+export function only(channel, modifier) {
   return (incommingMessage, messageContext) => {
     if (messageContext.channel === channel) {
       return messageContext
