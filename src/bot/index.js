@@ -13,7 +13,7 @@ import lurk from './commands/lurk.js'
 import maeva from './commands/maeva.js'
 import patreon from './commands/patreon.js'
 import project from './commands/project.js'
-import russian from './commands/russian.js'
+import roulette from './commands/roulette.js'
 import shoutout from './commands/shoutout.js'
 import socials from './commands/socials.js'
 
@@ -41,7 +41,7 @@ bot.messagePipe(
       love,
       shoutout,
       project,
-      russian,
+      roulette,
     ),
   ),
   sayHello(),

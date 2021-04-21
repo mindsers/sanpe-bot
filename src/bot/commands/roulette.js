@@ -12,7 +12,9 @@ async function resolver({ isBroadcaster, isModerator, isSubscriber, username: cu
   if (shouldKill) {
     return {
       message: `You loose ${currentUser}!!! I'll kill you !!!`,
+      banReason: `Russian roulette game`,
       timeout: currentUser,
+      timeoutDuration: 1,
     }
   } else {
     return `In my great kindness, I let you survive, ${currentUser} !!!`
