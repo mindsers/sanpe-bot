@@ -23,7 +23,10 @@ export class Bot {
       }
 
       for (const modifier of modifiers) {
-        messageContext = await modifier({ channel, tags, text, self }, messageContext)
+        messageContext = {
+          ...messageContext,
+          ...((await modifier({ channel, tags, text, self }, messageContext)) || {}),
+        }
 
         if (messageContext.message != null) {
           this.sendMessage(messageContext.message, { channels: [channel] })

@@ -1,6 +1,5 @@
 export function parseChannel() {
-  return (incomingMessage, messageContext) => ({
-    ...messageContext,
+  return incomingMessage => ({
     channel: incomingMessage.channel,
     broadcaster: incomingMessage.channel.replace('#', ''),
   })

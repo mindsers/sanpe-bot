@@ -7,7 +7,7 @@ export function sayHello() {
     const messageWords = text.toLowerCase().split(' ')
 
     if (!messageWords.some(v => hellos.includes(v))) {
-      return { ...messageContext }
+      return
     }
 
     const mentionSomeone = messageWords.filter(w => w.startsWith('@')).length > 0
@@ -15,16 +15,15 @@ export function sayHello() {
 
     if (mentionSomeone && !mentionSanpe) {
       // mention
-      return { ...messageContext }
+      return
     }
 
     if (helloUserMemory.has(username) && !mentionSanpe) {
-      return { ...messageContext }
+      return
     }
 
     helloUserMemory.add(username)
     return {
-      ...messageContext,
       message: `Hello @${messageContext.displayName}!! Thank you for watching and welcome!`,
     }
   }

@@ -26,7 +26,6 @@ export function registerCommands(...commandsAndAliases) {
 
     if (!commands.has(commandName)) {
       return {
-        ...messageContext,
         message: `This command doesn't exist or you can't type. Respect me please!`,
       }
     }
@@ -43,22 +42,14 @@ export function registerCommands(...commandsAndAliases) {
       })
 
       if (typeof result === 'string') {
-        return {
-          ...messageContext,
-          message: result,
-        }
+        return { message: result }
       }
 
       return result
     } catch (err) {
       console.error(`Something went wrong processing command ${commandName}`, err)
 
-      return {
-        ...messageContext,
-        // This typo is intentional. This is the sanpe-bot.
-        // "sanpe" looks like "santé" which is the french word for health
-        message: 'The commander should check my healph',
-      }
+      return { message: 'The commander should check my healph' }
     }
   }
 }
