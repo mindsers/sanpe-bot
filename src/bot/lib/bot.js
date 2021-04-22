@@ -21,13 +21,12 @@ export class Bot {
       let messageContext = {
         timeoutDuration: 300,
         banReason: `Because I can`,
-        setMemory: this.setMemory.bind(this),
-        getMemory: this.getMemory.bind(this),
-        resetMemory: this.resetMemory.bind(this),
       }
 
       for (const modifier of modifiers) {
-        messageContext = await modifier({ channel, tags, text, self }, messageContext)
+        messageContext = await modifier({ channel, tags, text, self }, { ...messageContext, memory: this.getMemory() })
+
+        this.setMemory(messageContext.memory)
 
         if (messageContext.message != null) {
           this.sendMessage(messageContext.message, { channels: [channel] })

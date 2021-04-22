@@ -1,9 +1,13 @@
 export function sayHello() {
   const hellos = ['hey', 'hi', 'hello', 'cc', 'yo', 'salut', 'bonjour', 'bijour', 'coucou', 'saloute', 're', 'bonsoir']
+  const botName = `@${process.env.BOT_USERNAME.toLowerCase()}`
 
   return ({ text }, messageContext) => {
-    const { username, getMemory, setMemory } = messageContext
-    const { helloedUsers = new Set() } = getMemory()
+    const {
+      username,
+      memory: { helloedUsers = new Set() },
+      displayName,
+    } = messageContext
     const messageWords = text.toLowerCase().split(' ')
 
     if (!messageWords.some(v => hellos.includes(v))) {
@@ -11,7 +15,7 @@ export function sayHello() {
     }
 
     const mentionSomeone = messageWords.filter(w => w.startsWith('@')).length > 0
-    const mentionSanpe = mentionSomeone && messageWords.includes(`@${process.env.BOT_USERNAME.toLowerCase()}`)
+    const mentionSanpe = mentionSomeone && messageWords.includes(botName)
 
     if (mentionSomeone && !mentionSanpe) {
       // mention
@@ -23,10 +27,10 @@ export function sayHello() {
     }
 
     helloedUsers.add(username)
-    setMemory({ helloedUsers })
     return {
       ...messageContext,
-      message: `Hello @${messageContext.displayName}!! Thank you for watching and welcome!`,
+      message: `Hello @${displayName}!! Thank you for watching and welcome!`,
+      memory: { helloedUsers },
     }
   }
 }
