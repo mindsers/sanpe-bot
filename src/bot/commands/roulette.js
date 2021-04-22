@@ -2,8 +2,6 @@ import { command } from '../lib/utils/command.js'
 
 const barrelSize = 6
 
-let barrel = new Barrel(barrelSize)
-
 class Barrel {
   constructor(size = 6) {
     this.size = size
@@ -39,6 +37,8 @@ class Barrel {
     return this.slot.length === 0
   }
 }
+
+let barrel = new Barrel(barrelSize)
 
 async function resolver({ isBroadcaster, isModerator, username: currentUser }) {
   if (isBroadcaster || isModerator) {
