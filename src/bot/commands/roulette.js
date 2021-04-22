@@ -2,7 +2,7 @@ import { command } from '../lib/utils/command.js'
 
 async function resolver({ isBroadcaster, isModerator, isSubscriber, username: currentUser }) {
   if (isBroadcaster || isModerator || currentUser === 'v1dev') {
-    return "I can't kill you my lord <3 ! mindse4Stop"
+    return 'I can\'t kill you my lord <3 ! mindse4Stop'
   }
 
   // As a russian roulette work, there is a chance on 6 to be killed
