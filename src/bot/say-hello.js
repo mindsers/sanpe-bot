@@ -1,6 +1,6 @@
 export function sayHello() {
   const helloUserMemory = new Set()
-  const hellos = ['hey', 'hi', 'hello', 'cc', 'yo', 'salut', 'bonjour', 'bijour', 'coucou', 'saloute']
+  const hellos = ['hey', 'hi', 'hello', 'cc', 'yo', 'salut', 'bonjour', 'bijour', 'coucou', 'saloute', 're', 'bonsoir']
 
   return ({ text }, messageContext) => {
     const { username } = messageContext
