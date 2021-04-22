@@ -1,9 +1,9 @@
 export function sayHello() {
-  const helloUserMemory = new Set()
   const hellos = ['hey', 'hi', 'hello', 'cc', 'yo', 'salut', 'bonjour', 'bijour', 'coucou', 'saloute', 're', 'bonsoir']
 
   return ({ text }, messageContext) => {
-    const { username } = messageContext
+    const { username, getMemory, setMemory } = messageContext
+    const { helloedUsers = new Set() } = getMemory()
     const messageWords = text.toLowerCase().split(' ')
 
     if (!messageWords.some(v => hellos.includes(v))) {
@@ -18,11 +18,12 @@ export function sayHello() {
       return { ...messageContext }
     }
 
-    if (helloUserMemory.has(username) && !mentionSanpe) {
+    if (helloedUsers.has(username) && !mentionSanpe) {
       return { ...messageContext }
     }
 
-    helloUserMemory.add(username)
+    helloedUsers.add(username)
+    setMemory({ helloedUsers })
     return {
       ...messageContext,
       message: `Hello @${messageContext.displayName}!! Thank you for watching and welcome!`,

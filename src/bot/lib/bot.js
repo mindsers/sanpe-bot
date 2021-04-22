@@ -3,6 +3,7 @@ import tmi from 'tmi.js'
 export class Bot {
   #client = null
   #channels = []
+  #memory = {}
 
   constructor(opts) {
     this.#channels = opts.channels
@@ -20,6 +21,9 @@ export class Bot {
       let messageContext = {
         timeoutDuration: 300,
         banReason: `Because I can`,
+        setMemory: this.setMemory.bind(this),
+        getMemory: this.getMemory.bind(this),
+        resetMemory: this.resetMemory.bind(this),
       }
 
       for (const modifier of modifiers) {
@@ -60,6 +64,21 @@ export class Bot {
     for (const channel of channels) {
       this.#client.say(channel, message)
     }
+  }
+
+  getMemory() {
+    return { ...this.#memory }
+  }
+
+  setMemory(data = {}) {
+    this.#memory = {
+      ...this.#memory,
+      ...data,
+    }
+  }
+
+  resetMemory() {
+    this.#memory = {}
   }
 
   async timeout(username, { channels = this.#channels, duration = 300, reason = 'Because I can' } = {}) {

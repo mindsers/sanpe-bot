@@ -1,5 +1,3 @@
-const commandMemory = {}
-
 export function registerCommands(...commandsAndAliases) {
   const commands = new Map()
   for (const { aliases = [], resolver = () => {} } of commandsAndAliases) {
@@ -38,7 +36,6 @@ export function registerCommands(...commandsAndAliases) {
           name: commandName,
           args,
           message: args.join(' '),
-          memory: commandMemory,
         },
       })
 
