@@ -1,6 +1,6 @@
 import { command } from '../lib/utils/command.js'
 
-function resolver({ username: currentUser, command: { args, name }, isSubscriber }) {
+function resolver({ username: currentUser, command: { args }, isSubscriber }) {
   const [mention] = args
 
   if (mention == null) {
