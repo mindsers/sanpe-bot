@@ -26,7 +26,13 @@ export class Bot {
       for (const modifier of modifiers) {
         messageContext = await modifier({ channel, tags, text, self }, { ...messageContext, memory: this.getMemory() })
 
-        this.setMemory(messageContext.memory)
+        if (messageContext.memory != null) {
+          this.setMemory(messageContext.memory)
+        }
+
+        if (messageContext.memory === null) {
+          this.resetMemory()
+        }
 
         if (messageContext.message != null) {
           this.sendMessage(messageContext.message, { channels: [channel] })
