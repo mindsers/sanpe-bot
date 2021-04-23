@@ -23,38 +23,36 @@ export class Bot {
       }
 
       for (const modifier of modifiers) {
-        messageContext = {
+        const { message, unban, ban, timeout, fullfilled = true, ...opts } = {
           ...messageContext,
-          fullfilled: true,
           ...((await modifier({ channel, tags, text, self }, messageContext)) || {}),
         }
 
-        if (messageContext.message != null) {
-          this.sendMessage(messageContext.message, { channels: [channel] })
-          messageContext.message = null
+        if (message != null) {
+          this.sendMessage(message, { channels: [channel] })
         }
 
-        if (messageContext.unban != null) {
-          await this.unban(messageContext.unban, { channels: [channel] })
-          messageContext.unban = null
+        if (unban != null) {
+          await this.unban(unban, { channels: [channel] })
         }
 
-        if (messageContext.ban != null) {
-          await this.ban(messageContext.ban, messageContext.banReason, { channels: [channel] })
+        if (ban != null) {
+          await this.ban(ban, opts.banReason, { channels: [channel] })
         }
 
-        if (messageContext.timeout != null) {
-          await this.timeout(messageContext.timeout, {
-            reason: messageContext.reason,
-            duration: messageContext.timeoutDuration,
+        if (timeout != null) {
+          await this.timeout(timeout, {
+            reason: opts.reason,
+            duration: opts.timeoutDuration,
             channels: [channel],
           })
-          messageContext.timeout = null
         }
 
-        if (messageContext.fullfilled === true) {
+        if (fullfilled === true) {
           break
         }
+
+        messageContext = opts
       }
 
       console.debug(messageContext)
@@ -89,7 +87,7 @@ export class Bot {
     this.#client.on('connected', (addr, port) => {
       console.log(`* Connected to ${addr}:${port}`)
 
-      this.sendMessage('Hello there! I\'m in da place!')
+      this.sendMessage(`Hello there! I'm in da place!`)
     })
 
     this.#client.connect()
