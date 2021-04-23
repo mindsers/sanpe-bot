@@ -23,6 +23,20 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "mindsers",
+      "name": "Nathanael CHERRIER",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3090112?v=4",
+      "profile": "https://nathanaelcherrier.com",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "infra",
+        "review",
+        "maintenance"
+      ]
     }
   ],
   "projectName": "sanpe-bot",
