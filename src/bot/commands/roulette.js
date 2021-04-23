@@ -10,7 +10,7 @@ class Barrel {
   }
 
   shuffle() {
-    var currentIndex = this.slot.length,
+    let currentIndex = this.slot.length,
       temporaryValue,
       randomIndex
 
@@ -53,9 +53,9 @@ async function resolver({ isBroadcaster, isModerator, username: currentUser }) {
       timeout: currentUser,
       timeoutDuration: 1,
     }
-  } else {
+  } 
     return `In my great kindness, I let you survive, ${currentUser} !!!`
-  }
+  
 }
 
 export default command('roulette', resolver, ['vladimir'])

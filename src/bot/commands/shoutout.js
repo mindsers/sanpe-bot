@@ -6,9 +6,9 @@ function resolver({ command: { args, memory }, isModerator, isBroadcaster }) {
   if (username != null) {
     if (isModerator !== true && isBroadcaster !== true) {
       return `Please STOP. You're not a moderator! mindse4Stop`
-    } else {
+    } 
       memory.shoutout = username
-    }
+    
   }
 
   if (memory.shoutout == null) {
