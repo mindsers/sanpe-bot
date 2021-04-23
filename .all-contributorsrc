@@ -1,0 +1,12 @@
+{
+  "files": [
+    "CONTRIBUTORS.md"
+  ],
+  "skipCi": true,
+  "contributors": [],
+  "projectName": "sanpe-bot",
+  "projectOwner": "mindsers",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "contributorsPerLine": 7
+}
