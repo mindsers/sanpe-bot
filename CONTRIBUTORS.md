@@ -9,6 +9,7 @@ Thanks goes to these wonderful people
 <table>
   <tr>
     <td align="center"><a href="https://github.com/Sata51"><img src="https://avatars.githubusercontent.com/u/17180336?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sata51</b></sub></a><br /><a href="https://github.com/mindsers/sanpe-bot/commits?author=Sata51" title="Code">💻</a> <a href="#ideas-Sata51" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://arthurmadecprevost.com/"><img src="https://avatars.githubusercontent.com/u/50238555?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Arthur Madec-Prévost</b></sub></a><br /><a href="https://github.com/mindsers/sanpe-bot/commits?author=arthurmadecprevost" title="Code">💻</a> <a href="#ideas-arthurmadecprevost" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
