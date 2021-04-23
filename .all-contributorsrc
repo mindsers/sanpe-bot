@@ -3,7 +3,17 @@
     "CONTRIBUTORS.md"
   ],
   "skipCi": true,
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "Sata51",
+      "name": "Sata51",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17180336?v=4",
+      "profile": "https://github.com/Sata51",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
   "projectName": "sanpe-bot",
   "projectOwner": "mindsers",
   "repoType": "github",
