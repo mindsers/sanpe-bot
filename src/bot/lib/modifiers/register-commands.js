@@ -18,7 +18,7 @@ export function registerCommands(...commandsAndAliases) {
 
   return async (incomingMessage, messageContext) => {
     if (!incomingMessage.text.startsWith('!')) {
-      return { ...messageContext, fulfilled: false } // Ignore if not a command
+      return { fulfilled: false } // Ignore if not a command
     }
 
     const args = incomingMessage.text.trim().slice(1).split(' ')
