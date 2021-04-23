@@ -23,7 +23,7 @@ export class Bot {
       }
 
       for (const modifier of modifiers) {
-        const { message, unban, ban, timeout, fullfilled = true, ...opts } = {
+        const { message, unban, ban, timeout, fulfilled = true, ...opts } = {
           ...messageContext,
           ...((await modifier({ channel, tags, text, self }, messageContext)) || {}),
         }
@@ -48,7 +48,7 @@ export class Bot {
           })
         }
 
-        if (fullfilled === true) {
+        if (fulfilled === true) {
           break
         }
 

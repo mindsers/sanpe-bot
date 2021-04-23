@@ -18,7 +18,7 @@ export function registerCommands(...commandsAndAliases) {
 
   return async (incomingMessage, messageContext) => {
     if (!incomingMessage.text.startsWith('!')) {
-      return { ...messageContext, fullfilled: false } // Ignore if not a command
+      return { ...messageContext, fulfilled: false } // Ignore if not a command
     }
 
     const args = incomingMessage.text.trim().slice(1).split(' ')
@@ -27,7 +27,7 @@ export function registerCommands(...commandsAndAliases) {
     if (!commands.has(commandName)) {
       return {
         message: `This command doesn't exist or you can't type. Respect me please!`,
-        fullfilled: false,
+        fulfilled: false,
       }
     }
 
