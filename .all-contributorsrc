@@ -12,6 +12,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "arthurmadecprevost",
+      "name": "Arthur Madec-Prévost",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50238555?v=4",
+      "profile": "https://arthurmadecprevost.com/",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ],
   "projectName": "sanpe-bot",
