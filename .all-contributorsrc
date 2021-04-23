@@ -1,0 +1,47 @@
+{
+  "files": [
+    "CONTRIBUTORS.md"
+  ],
+  "skipCi": true,
+  "contributors": [
+    {
+      "login": "Sata51",
+      "name": "Sata51",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17180336?v=4",
+      "profile": "https://github.com/Sata51",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "arthurmadecprevost",
+      "name": "Arthur Madec-Prévost",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50238555?v=4",
+      "profile": "https://arthurmadecprevost.com/",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "mindsers",
+      "name": "Nathanael CHERRIER",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3090112?v=4",
+      "profile": "https://nathanaelcherrier.com",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "infra",
+        "review",
+        "maintenance"
+      ]
+    }
+  ],
+  "projectName": "sanpe-bot",
+  "projectOwner": "mindsers",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "contributorsPerLine": 7
+}
