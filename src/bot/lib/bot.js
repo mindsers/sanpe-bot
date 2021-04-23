@@ -25,6 +25,7 @@ export class Bot {
       for (const modifier of modifiers) {
         messageContext = {
           ...messageContext,
+          fullfilled: true,
           ...((await modifier({ channel, tags, text, self }, messageContext)) || {}),
         }
 
@@ -40,8 +41,6 @@ export class Bot {
 
         if (messageContext.ban != null) {
           await this.ban(messageContext.ban, messageContext.banReason, { channels: [channel] })
-
-          break
         }
 
         if (messageContext.timeout != null) {
@@ -50,7 +49,10 @@ export class Bot {
             duration: messageContext.timeoutDuration,
             channels: [channel],
           })
+          messageContext.timeout = null
+        }
 
+        if (messageContext.fullfilled === true) {
           break
         }
       }
