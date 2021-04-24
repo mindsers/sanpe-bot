@@ -30,7 +30,7 @@ export function onlyFor(channel, modifier) {
   }
 }
 
-export async function composeOnlyFor(channel, modifier) {
+export async function composeOnlyFor(channel, modifierFactory) {
   const memoryKey = `${Math.random().toString(36).substring(2)}-${channel}-scoped-memory`
 
   return (...args) => (incommingMessage, previousCtx) => {
@@ -41,7 +41,7 @@ export async function composeOnlyFor(channel, modifier) {
     const previousMemory = previousCtx.memory || {}
     const previousChannelMemory = previousMemory[memoryKey] || {}
 
-    const currentCtx = modifier(...args)(incommingMessage, {
+    const currentCtx = modifierFactory(...args)(incommingMessage, {
       ...previousCtx,
       memory: previousChannelMemory,
     })
