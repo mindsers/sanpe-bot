@@ -1,11 +1,13 @@
 export function only(channel, modifier) {
+  const memoryKey = `${Math.random().toString(36).substring(2)}-${channel}-scoped-memory`
+
   return (incommingMessage, previousCtx) => {
     if (previousCtx.channel === channel) {
       return {}
     }
 
     const previousMemory = previousCtx.memory || {}
-    const previousChannelMemory = previousMemory[channel] || {}
+    const previousChannelMemory = previousMemory[memoryKey] || {}
 
     const currentCtx = modifier(incommingMessage, {
       ...previousCtx,
@@ -19,7 +21,7 @@ export function only(channel, modifier) {
       ...currentCtx,
       memory: {
         ...previousMemory,
-        [channel]: {
+        [memoryKey]: {
           ...previousChannelMemory,
           ...currentChannelMemory,
         },
