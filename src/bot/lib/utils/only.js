@@ -1,9 +1,9 @@
 export function only(channel, modifier) {
-  return (incommingMessage, messageContext) => {
+  return (incomingMessage, messageContext) => {
     if (messageContext.channel === channel) {
       return messageContext
     }
 
-    return modifier(incommingMessage, messageContext)
+    return modifier(incomingMessage, messageContext)
   }
 }
