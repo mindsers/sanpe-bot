@@ -7,19 +7,18 @@ export function sayHello() {
     const messageWords = text.toLowerCase().split(' ')
 
     if (!messageWords.some(v => hellos.includes(v))) {
-      return
+      return { fulfilled: false }
     }
 
     const mentionSomeone = messageWords.filter(w => w.startsWith('@')).length > 0
     const mentionSanpe = mentionSomeone && messageWords.includes(`@${process.env.BOT_USERNAME.toLowerCase()}`)
 
     if (mentionSomeone && !mentionSanpe) {
-      // mention
-      return
+      return { fulfilled: false }
     }
 
     if (helloUserMemory.has(username) && !mentionSanpe) {
-      return
+      return { fulfilled: false }
     }
 
     helloUserMemory.add(username)
