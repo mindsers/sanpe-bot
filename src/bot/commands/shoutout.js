@@ -15,7 +15,7 @@ function resolver(context) {
   if (username != null) {
     if (isModerator !== true && isBroadcaster !== true) {
       return `Please STOP. You're not a moderator! mindse4Stop`
-    }
+    } 
 
     shoutout = username.replace(`@`, ``)
   }

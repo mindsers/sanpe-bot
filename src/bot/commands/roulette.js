@@ -1,24 +1,61 @@
 import { command } from '../lib/utils/command.js'
 
-async function resolver({ isBroadcaster, isModerator, isSubscriber, username: currentUser }) {
-  if (isBroadcaster || isModerator || currentUser === 'v1dev') {
-    return "I can't kill you my lord <3 ! mindse4Stop"
+const barrelSize = 6
+
+class Barrel {
+  constructor(size = 6) {
+    this.size = size
+    this.slot = new Array(size).fill(false)
+    this.slot[Math.random() * this.size] = true
   }
 
-  // As a russian roulette work, there is a chance on 6 to be killed
-  // This chance is reduced on 3 if user is not a subscriber
-  const shouldKill = Math.random() < 1 / (isSubscriber ? 6 : 3)
+  shuffle() {
+    let currentIndex = this.slot.length,
+      temporaryValue,
+      randomIndex
 
-  if (shouldKill) {
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex -= 1
+
+      // And swap it with the current element.
+      temporaryValue = this.slot[currentIndex]
+      this.slot[currentIndex] = this.slot[randomIndex]
+      this.slot[randomIndex] = temporaryValue
+    }
+  }
+
+  shot() {
+    this.shuffle()
+    return this.slot[0]
+  }
+
+  isEmpty() {
+    console.log('isEmpty', this.slot.length === 0)
+    return this.slot.length === 0
+  }
+}
+
+let barrel = new Barrel(barrelSize)
+
+async function resolver({ isBroadcaster, isModerator, username: currentUser }) {
+  if (isBroadcaster || isModerator) {
+    return 'I can\'t kill you my lord <3 ! mindse4Stop'
+  }
+
+  if (barrel.shot() === true) {
+    barrel = new Barrel(barrelSize) // refresh if someone is killed
     return {
       message: `You loose ${currentUser}!!! I'll kill you !!!`,
       banReason: `Russian roulette game`,
       timeout: currentUser,
       timeoutDuration: 1,
     }
-  } else {
+  } 
     return `In my great kindness, I let you survive, ${currentUser} !!!`
-  }
+  
 }
 
 export default command('roulette', resolver, ['vladimir'])

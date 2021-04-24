@@ -52,7 +52,9 @@ export function registerCommands(...commandsAndAliases) {
 
       return {
         ...messageContext,
-        message: 'The commander should check my healph', // This typo is intentional. This is the sanpe-bot. "sanpe" looks like "santé" which is the french word for health
+        // This typo is intentional. This is the sanpe-bot.
+        // "sanpe" looks like "santé" which is the french word for health
+        message: 'The commander should check my healph',
       }
     }
   }
