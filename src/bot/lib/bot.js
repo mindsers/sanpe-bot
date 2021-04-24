@@ -1,5 +1,7 @@
 import tmi from 'tmi.js'
 
+import { chatEvents } from './utils/const.js'
+
 export class Bot {
   #client = null
   #channels = []
@@ -10,7 +12,10 @@ export class Bot {
   }
 
   messagePipe(...modifiers) {
-    this.#client.on('message', async (channel, tags, text, self, ...rest) => {
+    // We must consider using chat event instead of message event.
+    // Message will also includes action messages and whisper messages.
+    // https://github.com/tmijs/docs/blob/gh-pages/_posts/v1.4.2/2019-03-03-Events.md#chat
+    this.#client.on(chatEvents.message, async (channel, tags, text, self, ...rest) => {
       console.debug({ channel, tags, text, self, rest })
 
       if (self) {
@@ -56,6 +61,16 @@ export class Bot {
     })
   }
 
+  registerEvents(...events) {
+    for (const { action, resolver = () => {} } of events) {
+      this.addEventListener(action, resolver.bind(this))
+    }
+  }
+
+  addEventListener(event, listener) {
+    this.#client.on(event, listener)
+  }
+
   sendMessage(message, { channels = this.#channels } = {}) {
     for (const channel of channels) {
       this.#client.say(channel, message)
@@ -84,7 +99,7 @@ export class Bot {
     this.#client.on('connected', (addr, port) => {
       console.log(`* Connected to ${addr}:${port}`)
 
-      this.sendMessage('Hello there! I\'m in da place!')
+      this.sendMessage("Hello there! I'm in da place!")
     })
 
     this.#client.connect()
