@@ -1,9 +1,31 @@
 export async function makeSpecific(channel, modifier) {
-  return (...args) => (incommingMessage, messageContext) => {
-    if (messageContext.channel === channel) {
-      return messageContext
+  const memoryKey = `${Math.random().toString(36).substring(2)}-${channel}-scoped-memory`
+
+  return (...args) => (incommingMessage, previousCtx) => {
+    if (previousCtx.channel === channel) {
+      return {}
     }
 
-    return modifier(...args)(incommingMessage, messageContext)
+    const previousMemory = previousCtx.memory || {}
+    const previousChannelMemory = previousMemory[memoryKey] || {}
+
+    const currentCtx = modifier(...args)(incommingMessage, {
+      ...previousCtx,
+      memory: previousChannelMemory,
+    })
+
+    const currentChannelMemory = currentCtx.memory || {}
+
+    return {
+      ...previousCtx,
+      ...currentCtx,
+      memory: {
+        ...previousMemory,
+        [memoryKey]: {
+          ...previousChannelMemory,
+          ...currentChannelMemory,
+        },
+      },
+    }
   }
 }
