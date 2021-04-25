@@ -40,6 +40,10 @@ bot.messagePipe(
       shoutout,
       project,
       roulette,
+      command(
+        'reset',
+        ({ isModerator, isBroadcaster }) => (isModerator || isBroadcaster) && { memory: null, message: 'Ok malord.' },
+      ),
     ),
   ),
   sayHello(),
