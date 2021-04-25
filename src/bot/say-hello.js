@@ -11,19 +11,18 @@ export function sayHello() {
     const messageWords = text.toLowerCase().split(' ')
 
     if (!messageWords.some(v => hellos.includes(v))) {
-      return { ...messageContext }
+      return { fulfilled: false }
     }
 
     const mentionSomeone = messageWords.filter(w => w.startsWith('@')).length > 0
     const mentionSanpe = mentionSomeone && messageWords.includes(botName)
 
     if (mentionSomeone && !mentionSanpe) {
-      // mention
-      return { ...messageContext }
+      return { fulfilled: false }
     }
 
     if (helloedUsers.has(username) && !mentionSanpe) {
-      return { ...messageContext }
+      return { fulfilled: false }
     }
 
     helloedUsers.add(username)
