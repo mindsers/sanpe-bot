@@ -108,7 +108,7 @@ export class Bot {
     this.#client.on('connected', (addr, port) => {
       console.log(`* Connected to ${addr}:${port}`)
 
-      this.sendMessage('Hello there! I\'m in da place!')
+      this.sendMessage(`Hello there! I'm in da place!`)
     })
 
     this.#client.connect()
