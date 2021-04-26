@@ -11,7 +11,7 @@
   },
   "rules": {
     "max-len": ["error", 120],
-    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true, "avoidEscape": true }],
     "arrow-body-style": ["error", "as-needed"],
     "arrow-parens": ["error", "as-needed"],
     "arrow-spacing": "error",
