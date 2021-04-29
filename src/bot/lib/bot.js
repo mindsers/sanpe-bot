@@ -24,16 +24,16 @@ export class Bot {
       }
 
       for (const modifier of modifiers) {
-        const { message, unban, ban, timeout, fulfilled = true, ...opts } = {
+        const { message, unban, ban, timeout, fulfilled = true, memory, ...opts } = {
           ...messageContext,
           ...((await modifier({ channel, tags, text, self }, { ...messageContext, memory: this.getMemory() })) || {}),
         }
 
-        if (messageContext.memory != null) {
-          this.setMemory(messageContext.memory)
+        if (memory != null) {
+          this.setMemory(memory)
         }
 
-        if (messageContext.memory === null) {
+        if (memory === null) {
           this.resetMemory()
         }
 

@@ -3,7 +3,7 @@ export function onlyFor(channel, modifier) {
 
   return async (incomingMessage, previousCtx) => {
     if (previousCtx.broadcaster !== channel) {
-      return previousCtx
+      return {}
     }
 
     const previousMemory = previousCtx.memory || {}
