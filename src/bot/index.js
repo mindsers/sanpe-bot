@@ -12,7 +12,7 @@ import { parseChannel } from './lib/modifiers/parse-channel.js'
 import { parseUser } from './lib/modifiers/parse-user.js'
 import { registerCommands } from './lib/modifiers/register-commands.js'
 import { command } from './lib/utils/command.js'
-import { only } from './lib/utils/only.js'
+import { onlyFor } from './lib/utils/only.js'
 import { sayHello } from './say-hello.js'
 
 export const bot = new Bot({
@@ -26,7 +26,7 @@ export const bot = new Bot({
 bot.messagePipe(
   parseChannel(),
   parseUser(),
-  only(
+  onlyFor(
     'mindsers',
     registerCommands(
       command('discord', () => 'Join the discord server! https://discord.gg/WrHUfSC'),
