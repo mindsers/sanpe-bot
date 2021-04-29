@@ -1,7 +1,7 @@
 export function onlyFor(channel, modifier) {
   const memoryKey = `${Math.random().toString(36).substring(2)}-${channel}-scoped-memory`
 
-  return (incommingMessage, previousCtx) => {
+  return (incomingMessage, previousCtx) => {
     if (previousCtx.channel === channel) {
       return {}
     }
@@ -9,7 +9,7 @@ export function onlyFor(channel, modifier) {
     const previousMemory = previousCtx.memory || {}
     const previousChannelMemory = previousMemory[memoryKey] || {}
 
-    const currentCtx = modifier(incommingMessage, {
+    const currentCtx = modifier(incomingMessage, {
       ...previousCtx,
       memory: previousChannelMemory,
     })
@@ -33,7 +33,7 @@ export function onlyFor(channel, modifier) {
 export async function composeOnlyFor(channel, modifierFactory) {
   const memoryKey = `${Math.random().toString(36).substring(2)}-${channel}-scoped-memory`
 
-  return (...args) => (incommingMessage, previousCtx) => {
+  return (...args) => (incomingMessage, previousCtx) => {
     if (previousCtx.channel === channel) {
       return {}
     }
@@ -41,7 +41,7 @@ export async function composeOnlyFor(channel, modifierFactory) {
     const previousMemory = previousCtx.memory || {}
     const previousChannelMemory = previousMemory[memoryKey] || {}
 
-    const currentCtx = modifierFactory(...args)(incommingMessage, {
+    const currentCtx = modifierFactory(...args)(incomingMessage, {
       ...previousCtx,
       memory: previousChannelMemory,
     })
