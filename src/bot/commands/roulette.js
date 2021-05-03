@@ -32,6 +32,16 @@ class Barrel {
     return this.slot[0]
   }
 
+  addBullet() {
+    for (let i = 0; i < this.slot.length; i++) {
+      const hasBullet = this.slot[i]
+      if (!hasBullet) {
+        this.slot[i] = true
+        return
+      }
+    }
+  }
+
   isEmpty() {
     console.log('isEmpty', this.slot.length === 0)
     return this.slot.length === 0
@@ -41,7 +51,7 @@ class Barrel {
 let barrel = new Barrel(barrelSize)
 
 async function resolver({ isBroadcaster, isModerator, username: currentUser }) {
-  if (isBroadcaster || isModerator) {
+  if (isBroadcaster || (isModerator && currentUser !== 'maevatravelandfood')) {
     return `I can't kill you my lord <3 ! mindse4Stop`
   }
 
@@ -54,6 +64,8 @@ async function resolver({ isBroadcaster, isModerator, username: currentUser }) {
       timeoutDuration: 1,
     }
   }
+  barrel.addBullet()
+
   return `In my great kindness, I let you survive, ${currentUser} !!!`
 }
 
