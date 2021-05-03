@@ -3,10 +3,12 @@ import tmi from 'tmi.js'
 export class Bot {
   #client = null
   #channels = []
+  #username = ''
   #memory = {}
 
   constructor(opts) {
     this.#channels = opts.channels
+    this.#username = opts.identity.username
     this.#client = new tmi.client(opts)
   }
 
@@ -21,6 +23,7 @@ export class Bot {
       let messageContext = {
         timeoutDuration: 300,
         banReason: `Because I can`,
+        bot: this.#username,
       }
 
       for (const modifier of modifiers) {
