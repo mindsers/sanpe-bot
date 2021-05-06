@@ -6,7 +6,7 @@ class Barrel {
   constructor(size = 6) {
     this.size = size
     this.slot = new Array(size).fill(false)
-    this.slot[Math.random() * this.size] = true
+    this.slot[Math.round(Math.random() * this.size)] = true
   }
 
   shuffle() {
@@ -33,18 +33,9 @@ class Barrel {
   }
 
   addBullet() {
-    for (let i = 0; i < this.slot.length; i++) {
-      const hasBullet = this.slot[i]
-      if (!hasBullet) {
-        this.slot[i] = true
-        return
-      }
-    }
-  }
-
-  isEmpty() {
-    console.log('isEmpty', this.slot.length === 0)
-    return this.slot.length === 0
+    const emptySlot = this.slot.findIndex(s => s === false)
+    if (emptySlot < 0) return
+    this.slot[emptySlot] = true
   }
 }
 
