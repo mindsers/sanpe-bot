@@ -51,7 +51,7 @@ class Barrel {
 let barrel = new Barrel(barrelSize)
 
 async function resolver({ isBroadcaster, isModerator, username: currentUser }) {
-  if (isBroadcaster || (isModerator && currentUser !== 'maevatravelandfood')) {
+  if (isBroadcaster || isModerator) {
     return `I can't kill you my lord <3 ! mindse4Stop`
   }
 
