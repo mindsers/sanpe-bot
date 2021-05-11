@@ -6,7 +6,7 @@ class Barrel {
   constructor(size = 6) {
     this.size = size
     this.slot = new Array(size).fill(false)
-    this.slot[Math.round(Math.random() * this.size)] = true
+    this.addBullet()
   }
 
   shuffle() {
