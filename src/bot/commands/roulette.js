@@ -2,9 +2,10 @@ import { command } from '../lib/utils/command.js'
 
 const barrelSize = 6
 
-class Barrel {
+export class Barrel {
   constructor(size = 6) {
     this.size = size
+    this.bullet = 0
     this.slot = new Array(size).fill(false)
     this.addBullet()
   }
@@ -36,6 +37,7 @@ class Barrel {
     const emptySlot = this.slot.findIndex(s => s === false)
     if (emptySlot < 0) return
     this.slot[emptySlot] = true
+    this.bullet++
   }
 }
 
@@ -57,7 +59,8 @@ async function resolver({ isBroadcaster, isModerator, username: currentUser }) {
   }
   barrel.addBullet()
 
-  return `In my great kindness, I let you survive, ${currentUser} !!!`
+  // eslint-disable-next-line max-len
+  return `In my great kindness, I let you survive, ${currentUser} !!! Next try ${barrel.bullet} will be in barrel of ${barrel.size}`
 }
 
 export default command('roulette', resolver, ['vladimir'])
