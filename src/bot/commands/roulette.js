@@ -2,11 +2,12 @@ import { command } from '../lib/utils/command.js'
 
 const barrelSize = 6
 
-class Barrel {
+export class Barrel {
   constructor(size = 6) {
     this.size = size
+    this.bullet = 0
     this.slot = new Array(size).fill(false)
-    this.slot[Math.random() * this.size] = true
+    this.addBullet()
   }
 
   shuffle() {
@@ -32,9 +33,11 @@ class Barrel {
     return this.slot[0]
   }
 
-  isEmpty() {
-    console.log('isEmpty', this.slot.length === 0)
-    return this.slot.length === 0
+  addBullet() {
+    const emptySlot = this.slot.findIndex(s => s === false)
+    if (emptySlot < 0) return
+    this.slot[emptySlot] = true
+    this.bullet++
   }
 }
 
@@ -54,7 +57,10 @@ async function resolver({ isBroadcaster, isModerator, username: currentUser }) {
       timeoutDuration: 1,
     }
   }
-  return `In my great kindness, I let you survive, ${currentUser} !!!`
+  barrel.addBullet()
+
+  // eslint-disable-next-line max-len
+  return `In my great kindness, I let you survive, ${currentUser} !!! Next try ${barrel.bullet} will be in barrel of ${barrel.size}`
 }
 
 export default command('roulette', resolver, ['vladimir'])
