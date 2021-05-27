@@ -13,13 +13,13 @@ export function sayHello() {
     /^r+e+$/,
     /^b+o+n+s+o+i+r+$/,
   ]
-  const botName = `@${process.env.BOT_USERNAME.toLowerCase()}`
 
   return ({ text }, messageContext) => {
     const {
       username,
       memory: { helloedUsers = new Set() },
       displayName,
+      bot,
     } = messageContext
     const messageWords = text.toLowerCase().split(' ')
 
@@ -28,7 +28,7 @@ export function sayHello() {
     }
 
     const mentionSomeone = messageWords.filter(w => w.startsWith('@')).length > 0
-    const mentionSanpe = mentionSomeone && messageWords.includes(botName)
+    const mentionSanpe = mentionSomeone && messageWords.includes(`@${bot.toLowerCase()}`)
 
     if (mentionSomeone && !mentionSanpe) {
       return { fulfilled: false }
