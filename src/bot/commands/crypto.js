@@ -2,7 +2,7 @@ import { command } from '../lib/utils/command.js'
 import price from 'crypto-price'
 
 async function resolver({ command: { args } }) {
-  let [currency, cryptoCurrency] = args
+  let [cryptoCurrency, currency] = args
 
   if (currency === null) {
     currency = 'USD'
