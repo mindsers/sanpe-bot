@@ -6,6 +6,7 @@ specifiers:
   '@babel/preset-env': ^7.13.15
   '@types/nodemon': ^1.19.0
   '@types/tmi.js': ^1.7.1
+  crypto-price: ^0.0.6
   eslint: ^7.24.0
   husky: ^6.0.0
   lint-staged: ^10.5.4
@@ -14,6 +15,7 @@ specifiers:
   tmi.js: ^1.7.5
 
 dependencies:
+  crypto-price: 0.0.6
   tmi.js: 1.8.2
 
 devDependencies:
@@ -1452,6 +1454,12 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-price/0.0.6:
+    resolution: {integrity: sha512-GQFAnyUxS/NsEB9NyqNIvFn3to/bJR3BtNBK3+qNUL6EHUd1UM3z3wo83SaABpgjj2RTpSheRIXtUWwTsJqmig==}
+    dependencies:
+      node-fetch: 2.6.1
+    dev: false
 
   /crypto-random-string/2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}

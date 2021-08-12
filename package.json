@@ -17,6 +17,7 @@
   "author": "Nathanaël Cherrier",
   "license": "MIT",
   "dependencies": {
+    "crypto-price": "^0.0.6",
     "tmi.js": "^1.7.5"
   },
   "devDependencies": {
