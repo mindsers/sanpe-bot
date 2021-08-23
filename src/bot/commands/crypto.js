@@ -5,9 +5,9 @@ async function resolver({ command: { args } }) {
   const [cryptoCurrency = 'BTC', currency = 'USD'] = args
 
   try {
-    const { base, price, target } = await price.getCryptoPrice(currency, cryptoCurrency)
+    const { base, price: cost, target } = await price.getCryptoPrice(currency, cryptoCurrency)
     
-    return `1 ${base} is worth ${price} ${target}`
+    return `1 ${base} is worth ${cost} ${target}`
   } catch (e) {
     console.error(e)
     
