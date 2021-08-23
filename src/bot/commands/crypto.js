@@ -2,7 +2,7 @@ import { command } from '../lib/utils/command.js'
 import price from 'crypto-price'
 
 async function resolver({ command: { args } }) {
-  const [cryptoCurrency = 'USD', currency = 'BTC'] = args
+  const [cryptoCurrency = 'BTC', currency = 'USD'] = args
 
   try {
     const { base, price, target } = await price.getCryptoPrice(currency, cryptoCurrency)
