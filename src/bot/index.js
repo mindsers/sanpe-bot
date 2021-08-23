@@ -1,3 +1,4 @@
+import crypto from './commands/crypto.js'
 import ebaubir from './commands/ebaubir.js'
 import love from './commands/love.js'
 import lurk from './commands/lurk.js'
@@ -40,6 +41,7 @@ bot.messagePipe(
       shoutout,
       project,
       roulette,
+      crypto,
       command(
         'reset',
         ({ isModerator, isBroadcaster }) => (isModerator || isBroadcaster) && { memory: null, message: 'Ok malord.' },
