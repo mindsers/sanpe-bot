@@ -1,7 +1,6 @@
 import 'regenerator-runtime/runtime'
 
 import assert from 'assert'
-import { async } from 'regenerator-runtime'
 import { cryptoResultFormatter } from '../src/bot/lib/utils/currencies.js'
 import { getCryptoValue } from '../src/bot/commands/crypto.js'
 
