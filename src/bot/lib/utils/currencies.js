@@ -1,4 +1,25 @@
-export const currencies = [
+export const cryptoResultFormatter = (quantity, base, valueOfBaseIntoTarget, target) => {
+  const baseFormatted = getFormattedCurrency(base, quantity)
+  const targetFormatted = getFormattedCurrency(target, valueOfBaseIntoTarget * quantity)
+
+  return `${baseFormatted} is worth ${targetFormatted}`
+}
+
+const getFormattedCurrency = (currency, value) => {
+  if (currencies.indexOf(currency) === -1) {
+    return `${Intl.NumberFormat('en-US', {
+      style: 'decimal',
+      maximumSignificantDigits: 3,
+    }).format(value)} ${currency}`
+  }
+
+  return Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+  }).format(value)
+}
+
+const currencies = [
   'AED',
   'AFN',
   'ALL',
