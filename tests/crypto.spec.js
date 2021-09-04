@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime'
 
 import assert from 'assert'
-import { cryptoResultFormatter } from '../src/bot/lib/utils/currencies.js'
+import { cryptoResultFormatter } from '../src/bot/lib/utils/currency.js'
 import { getCryptoValue } from '../src/bot/commands/crypto.js'
 
 describe('Get crypto value', () => {
@@ -106,7 +106,7 @@ describe('Get crypto value and format', () => {
   }
 
   test('Should format 1 DOGE value into EUR', async () => {
-    expect(await calculator('DOGE', 'EUR', 1)).toMatch(/^\d+(?:\.\d+)? DOGE is worth \€\d+(?:\.\d+)?/)
+    expect(await calculator('DOGE', 'EUR', 1)).toMatch(/^\d+(?:\.\d+)? DOGE is worth €\d+(?:\.\d+)?/)
   })
 
   test('Should format 1 DOGE value into DOLLAR', async () => {
@@ -118,11 +118,11 @@ describe('Get crypto value and format', () => {
   })
 
   test('Should format 1 EUR value into ETH', async () => {
-    expect(await calculator('EUR', 'ETH', 1)).toMatch(/^\€\d+(?:\.\d+)? is worth \d+(?:\.\d+)? ETH/)
+    expect(await calculator('EUR', 'ETH', 1)).toMatch(/^€\d+(?:\.\d+)? is worth \d+(?:\.\d+)? ETH/)
   })
 
   test('Should format 1 USD value into EUR', async () => {
-    expect(await calculator('USD', 'EUR', 1)).toMatch(/^\$\d+(?:\.\d+)? is worth \€\d+(?:\.\d+)?/)
+    expect(await calculator('USD', 'EUR', 1)).toMatch(/^\$\d+(?:\.\d+)? is worth €\d+(?:\.\d+)?/)
   })
 
   test('Should throw when piping nonsense', async () => {
