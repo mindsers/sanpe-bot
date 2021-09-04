@@ -9,6 +9,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
+  "plugins": ["jest"],
   "rules": {
     "max-len": ["error", 120],
     "quotes": ["error", "single", { "allowTemplateLiterals": true, "avoidEscape": true }],

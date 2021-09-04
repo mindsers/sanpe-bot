@@ -17,21 +17,23 @@
   "author": "Nathanaël Cherrier",
   "license": "MIT",
   "dependencies": {
+    "crypto-price": "^0.0.6",
     "tmi.js": "^1.7.5"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
     "@babel/eslint-parser": "^7.13.14",
     "@babel/preset-env": "^7.13.15",
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^27.0.1",
     "@types/nodemon": "^1.19.0",
     "@types/tmi.js": "^1.7.1",
     "eslint": "^7.24.0",
+    "eslint-plugin-jest": "^24.4.0",
     "husky": "^6.0.0",
-    "jest": "^26.6.3",
+    "jest": "^27.1.0",
     "lint-staged": "^10.5.4",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
-    "regenerator": "^0.14.7"
+    "regenerator-runtime": "^0.13.9"
   }
 }
