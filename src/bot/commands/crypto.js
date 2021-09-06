@@ -1,8 +1,7 @@
 import { command } from '../lib/utils/command.js'
-import { cryptoResultFormatter } from '../lib/utils/currencies.js'
+import { cryptoResultFormatter } from '../lib/utils/currency.js'
 import price from 'crypto-price'
 
-// Declare it as a function and export for test purposes
 export const getCryptoValue = async (cryptoCurrency = 'BTC', currency = 'USD', quantity = 1) => {
   if (typeof cryptoCurrency !== 'string') {
     return Promise.reject(`${cryptoCurrency} is not a valid currency`)
