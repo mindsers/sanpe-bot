@@ -34,7 +34,8 @@ async function resolver({ command: { args } }) {
 
     return cryptoResultFormatter(num, base, cost, target)
   } catch (e) {
-    return `Unable to retrieve value in ${cryptoCurrency} for ${currency} due to ${e}`
+    console.error(e)
+    return `Unable to retrieve value in ${cryptoCurrency} for ${currency}`
   }
 }
 
