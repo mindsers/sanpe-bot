@@ -102,7 +102,7 @@ describe('Format crypto result', () => {
 describe('Get crypto value and format', () => {
   const calculator = async (sourceCurrency, targetCurrency, quantity) => {
     const { base, cost, target } = await getCryptoValue(sourceCurrency, targetCurrency, quantity)
-    return cryptoResultFormatter(cost, base, quantity, target)
+    return cryptoResultFormatter(quantity, base, cost, target)
   }
 
   test('Should format 1 DOGE value into EUR', async () => {

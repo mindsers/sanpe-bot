@@ -27,14 +27,15 @@ export const getCryptoValue = async (cryptoCurrency = 'BTC', currency = 'USD', q
 }
 
 async function resolver({ command: { args } }) {
-  const [cryptoCurrency, currency, num] = args
+  const [cryptoCurrency = 'BTC', currency = 'USD', num = 1] = args
 
   try {
     const { base, cost, target } = await getCryptoValue(cryptoCurrency, currency, num)
 
     return cryptoResultFormatter(num, base, cost, target)
   } catch (e) {
-    return `Unable to retrieve value in ${cryptoCurrency} for ${currency} due to ${e}`
+    console.error(e)
+    return `Unable to retrieve value in ${cryptoCurrency} for ${currency}`
   }
 }
 
