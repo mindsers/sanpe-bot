@@ -1,5 +1,3 @@
-const commandMemory = {}
-
 export function registerCommands(...commandsAndAliases) {
   const commands = new Map()
   for (const { aliases = [], resolver = () => {} } of commandsAndAliases) {
@@ -18,7 +16,7 @@ export function registerCommands(...commandsAndAliases) {
 
   return async (incomingMessage, messageContext) => {
     if (!incomingMessage.text.startsWith('!')) {
-      return { ...messageContext } // Ignore if not a command
+      return { fulfilled: false } // Ignore if not a command
     }
 
     const args = incomingMessage.text.trim().slice(1).split(' ')
@@ -26,8 +24,8 @@ export function registerCommands(...commandsAndAliases) {
 
     if (!commands.has(commandName)) {
       return {
-        ...messageContext,
         message: `This command doesn't exist or you can't type. Respect me please!`,
+        fulfilled: false,
       }
     }
 
@@ -38,27 +36,18 @@ export function registerCommands(...commandsAndAliases) {
           name: commandName,
           args,
           message: args.join(' '),
-          memory: commandMemory,
         },
       })
 
       if (typeof result === 'string') {
-        return {
-          ...messageContext,
-          message: result,
-        }
+        return { message: result }
       }
 
       return result
     } catch (err) {
       console.error(`Something went wrong processing command ${commandName}`, err)
 
-      return {
-        ...messageContext,
-        // This typo is intentional. This is the sanpe-bot.
-        // "sanpe" looks like "santé" which is the french word for health
-        message: 'The commander should check my healph',
-      }
+      return { message: 'The commander should check my healph' }
     }
   }
 }

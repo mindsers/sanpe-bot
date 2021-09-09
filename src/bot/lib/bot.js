@@ -1,10 +1,10 @@
-import tmi from 'tmi.js'
-
 import { chatEvents } from './utils/const.js'
+import tmi from 'tmi.js'
 
 export class Bot {
   #client = null
   #channels = []
+  #memory = {}
 
   constructor(opts) {
     this.#channels = opts.channels
@@ -28,33 +28,44 @@ export class Bot {
       }
 
       for (const modifier of modifiers) {
-        messageContext = await modifier({ channel, tags, text, self }, messageContext)
-
-        if (messageContext.message != null) {
-          this.sendMessage(messageContext.message, { channels: [channel] })
-          messageContext.message = null
+        const { message, unban, ban, timeout, fulfilled = true, memory, ...opts } = {
+          ...messageContext,
+          ...((await modifier({ channel, tags, text, self }, { ...messageContext, memory: this.getMemory() })) || {}),
         }
 
-        if (messageContext.unban != null) {
-          await this.unban(messageContext.unban, { channels: [channel] })
-          messageContext.unban = null
+        if (memory != null) {
+          this.setMemory(memory)
         }
 
-        if (messageContext.ban != null) {
-          await this.ban(messageContext.ban, messageContext.banReason, { channels: [channel] })
-
-          break
+        if (memory === null) {
+          this.resetMemory()
         }
 
-        if (messageContext.timeout != null) {
-          await this.timeout(messageContext.timeout, {
-            reason: messageContext.reason,
-            duration: messageContext.timeoutDuration,
+        if (message != null) {
+          this.sendMessage(message, { channels: [channel] })
+        }
+
+        if (unban != null) {
+          await this.unban(unban, { channels: [channel] })
+        }
+
+        if (ban != null) {
+          await this.ban(ban, opts.banReason, { channels: [channel] })
+        }
+
+        if (timeout != null) {
+          await this.timeout(timeout, {
+            reason: opts.reason,
+            duration: opts.timeoutDuration,
             channels: [channel],
           })
+        }
 
+        if (fulfilled === true) {
           break
         }
+
+        messageContext = opts
       }
 
       console.debug(messageContext)
@@ -75,6 +86,21 @@ export class Bot {
     for (const channel of channels) {
       this.#client.say(channel, message)
     }
+  }
+
+  getMemory() {
+    return { ...this.#memory }
+  }
+
+  setMemory(data = {}) {
+    this.#memory = {
+      ...this.#memory,
+      ...data,
+    }
+  }
+
+  resetMemory() {
+    this.#memory = {}
   }
 
   async timeout(username, { channels = this.#channels, duration = 300, reason = 'Because I can' } = {}) {
@@ -99,7 +125,7 @@ export class Bot {
     this.#client.on('connected', (addr, port) => {
       console.log(`* Connected to ${addr}:${port}`)
 
-      this.sendMessage("Hello there! I'm in da place!")
+      this.sendMessage(`Hello there! I'm in da place!`)
     })
 
     this.#client.connect()

@@ -1,3 +1,4 @@
+import crypto from './commands/crypto.js'
 import ebaubir from './commands/ebaubir.js'
 import love from './commands/love.js'
 import lurk from './commands/lurk.js'
@@ -13,7 +14,7 @@ import { parseChannel } from './lib/modifiers/parse-channel.js'
 import { parseUser } from './lib/modifiers/parse-user.js'
 import { registerCommands } from './lib/modifiers/register-commands.js'
 import { command } from './lib/utils/command.js'
-import { only } from './lib/utils/only.js'
+import { onlyFor } from './lib/utils/only.js'
 import { sayHello } from './say-hello.js'
 
 export const bot = new Bot({
@@ -30,7 +31,7 @@ bot.registerEvents(sub)
 bot.messagePipe(
   parseChannel(),
   parseUser(),
-  only(
+  onlyFor(
     'mindsers',
     registerCommands(
       command('discord', () => 'Join the discord server! https://discord.gg/WrHUfSC'),
@@ -44,6 +45,11 @@ bot.messagePipe(
       shoutout,
       project,
       roulette,
+      crypto,
+      command(
+        'reset',
+        ({ isModerator, isBroadcaster }) => (isModerator || isBroadcaster) && { memory: null, message: 'Ok malord.' },
+      ),
     ),
   ),
   sayHello(),
