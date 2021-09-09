@@ -9,6 +9,7 @@ import roulette from './commands/roulette.js'
 import shoutout from './commands/shoutout.js'
 import socials from './commands/socials.js'
 import { Bot } from './lib/bot.js'
+import { avoidCommands } from './lib/modifiers/avoid-commands.js'
 import { parseChannel } from './lib/modifiers/parse-channel.js'
 import { parseUser } from './lib/modifiers/parse-user.js'
 import { registerCommands } from './lib/modifiers/register-commands.js'
@@ -27,6 +28,7 @@ export const bot = new Bot({
 bot.messagePipe(
   parseChannel(),
   parseUser(),
+  avoidCommands(['category']),
   onlyFor(
     'mindsers',
     registerCommands(

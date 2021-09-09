@@ -22,6 +22,14 @@ export function registerCommands(...commandsAndAliases) {
     const args = incomingMessage.text.trim().slice(1).split(' ')
     const commandName = args.shift().toLowerCase()
 
+    if (
+      messageContext.avoidCommands &&
+      Array.isArray(messageContext.avoidCommands) &&
+      messageContext.avoidCommands.includes(commandName)
+    ) {
+      return { fulfilled: true }
+    }
+
     if (!commands.has(commandName)) {
       return {
         message: `This command doesn't exist or you can't type. Respect me please!`,
