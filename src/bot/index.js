@@ -8,6 +8,7 @@ import project from './commands/project.js'
 import roulette from './commands/roulette.js'
 import shoutout from './commands/shoutout.js'
 import socials from './commands/socials.js'
+import sub from './events/sub.js'
 import { Bot } from './lib/bot.js'
 import { avoidCommands } from './lib/modifiers/avoid-commands.js'
 import { parseChannel } from './lib/modifiers/parse-channel.js'
@@ -24,6 +25,9 @@ export const bot = new Bot({
   },
   channels: ['Mindsers'],
 })
+
+//TODO: provide a way to make the only also work here
+bot.registerEvents(sub)
 
 bot.messagePipe(
   parseChannel(),
